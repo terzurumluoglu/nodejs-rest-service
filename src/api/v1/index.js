@@ -1,20 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const { postRoute } = require('./routes');
 
-router.route('/').get(function (req, res, next) {
-  res.status(200).json({
-    success: true,
-    version: 'v1',
-    method: req.method,
-  });
-});
-
-router.route('/').post(function (req, res, next) {
-  res.status(200).json({
-    success: true,
-    version: 'v1',
-    method: req.method,
-  });
-});
+router.use('/posts', postRoute);
 
 module.exports = router;
