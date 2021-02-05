@@ -1,6 +1,6 @@
-const versions = {
+const version = {
   v1: 'v1',
   v2: 'v2',
 };
 
-module.exports = { versions };
+module.exports = { version };
