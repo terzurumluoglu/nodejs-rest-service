@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-rest-service",
+  "version": "1.0.0",
+  "description": "nodejs backend rest service api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terzurumluoglu/nodejs-rest-service.git"
+  },
+  "keywords": [
+    "nodejs",
+    "api",
+    "rest",
+    "restful",
+    "service"
+  ],
+  "author": "Toprak ERZURUMLUOĞLU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terzurumluoglu/nodejs-rest-service/issues"
+  },
+  "homepage": "https://github.com/terzurumluoglu/nodejs-rest-service#readme",
+}
