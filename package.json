@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/terzurumluoglu/nodejs-rest-service#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15"
   }
 }
