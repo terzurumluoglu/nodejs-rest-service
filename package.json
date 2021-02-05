@@ -2,8 +2,10 @@
   "name": "nodejs-rest-service",
   "version": "1.0.0",
   "description": "nodejs backend rest service api",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "SET NODE_ENV=production & node app",
+    "dev": "SET NODE_ENV=development & nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,4 +25,7 @@
     "url": "https://github.com/terzurumluoglu/nodejs-rest-service/issues"
   },
   "homepage": "https://github.com/terzurumluoglu/nodejs-rest-service#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
