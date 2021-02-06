@@ -1,24 +1,27 @@
-const users = [
-  {
-    id: 1,
-    title: 'Title 1',
-    desc: 'Description 1',
-    body: 'Body 1',
-  },
-  {
-    id: 2,
-    title: 'Title 2',
-    desc: 'Description 2',
-    body: 'Body 2',
-  },
-];
+const { version } = require('../constants/version');
+const PostSchema = require('../models/post.model');
+const ErrorResponse = require('../utils/errorResponse');
 
 const getAllPosts = () => {
-  return users;
+  return PostSchema.find();
 };
 
 const getPostById = (postId) => {
-  return users.find((f) => f.id === postId);
+  return PostSchema.find({ _id: postId });
 };
 
-module.exports = { getAllPosts, getPostById };
+const createPost = (data) => {
+  return PostSchema.create(data);
+};
+
+const updatePost = async (postId, data, next) => {
+  let post = await PostSchema.findById(postId);
+  if (post) {
+    post = await PostSchema.findByIdAndUpdate(postId, data, {
+      new: true,
+      runValidators: true,
+    });
+  }
+};
+
+module.exports = { getAllPosts, getPostById, createPost, updatePost };
