@@ -17,5 +17,9 @@ npm start
 
 Open your local browser and verify the sample-node-api is working by accessing:  
 `http://localhost:[port]/api/v1`
+`http://localhost:[port]/api/v1/posts`
+`http://localhost:[port]/api/v1/posts/:[postId]`
+
+`http://localhost:[port]/api/v1/tags`
 
 `http://localhost:[port]/api/v2`
