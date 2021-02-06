@@ -18,6 +18,12 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please Add a content'],
   },
+  isActive: {
+    type: Boolean,
+  },
+  isDeleted: {
+    type: Boolean,
+  },
   tags: [
     {
       type: mongoose.Schema.ObjectId,
@@ -25,6 +31,12 @@ const PostSchema = new mongoose.Schema({
       required: false,
     },
   ],
+});
+
+PostSchema.pre('save', function (next) {
+  this.isActive = this.isActive ? this.isActive : false;
+  this.isDeleted = this.isDeleted ? this.isDeleted : false;
+  next();
 });
 
 module.exports = mongoose.model(collection.post.name, PostSchema);
