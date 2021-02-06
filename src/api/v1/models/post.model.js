@@ -19,7 +19,13 @@ const PostSchema = mongoose.Schema({
     type: String,
     require: [true, 'Please Add a content'],
   },
-  tags: [TagSchema],
+  tags: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: collection.tag.name,
+      required: false,
+    },
+  ],
 });
 
 module.exports = mongoose.model(collection.post.name, PostSchema);
