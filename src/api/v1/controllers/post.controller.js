@@ -1,13 +1,19 @@
 const { version } = require('../constants/version');
-const { successResponse } = require('../utils/successResponse');
 const { postService } = require('../services');
 const ErrorResponse = require('../utils/errorResponse');
 const { asyncHandler } = require('../middlewares/async');
 
 const getAllPosts = asyncHandler(async (req, res, next) => {
   const posts = await postService.getAllPosts();
-  const result = successResponse(version.v1, 200, 'Get All Posts', posts);
-  res.status(result.statusCode).json(result);
+  res.status(200).json({
+    success: true,
+    method: req.method,
+    // url: `${req.headers.host + req.baseUrl}`,
+    message: 'Get All Posts',
+    statusCode: 200,
+    count: posts.length,
+    result: posts,
+  });
 });
 
 const getPostById = (req, res, next) => {
@@ -20,14 +26,25 @@ const getPostById = (req, res, next) => {
     );
   }
 
-  const result = successResponse(version.v1, 200, 'Get Single Post', post);
-  res.status(result.statusCode).json(result);
+  res.status(result.statusCode).json({
+    success: true,
+    method: req.method,
+    message: 'Get Single Post',
+    statusCode: 200,
+    result: post,
+  });
 };
 
 const createPost = asyncHandler(async (req, res, next) => {
   const post = await postService.createPost(req.body);
-  const result = successResponse(version.v1, 200, 'Create a new Post', post);
-  res.status(result.statusCode).json(result);
+
+  res.status(result.statusCode).json({
+    success: true,
+    method: req.method,
+    message: 'Create a new Post',
+    statusCode: 200,
+    result: post,
+  });
 });
 
 const updatePost = asyncHandler(async (req, res, next) => {
@@ -35,8 +52,14 @@ const updatePost = asyncHandler(async (req, res, next) => {
   if (!post) {
     return next(new ErrorResponse(version.v1, `Not Found`, 404));
   }
-  const result = successResponse(version.v1, 200, 'Updated Post', post);
-  res.status(result.statusCode).json(result);
+
+  res.status(result.statusCode).json({
+    success: true,
+    method: req.method,
+    message: 'Updated Post',
+    statusCode: 200,
+    result: post,
+  });
 });
 
 module.exports = { getAllPosts, getPostById, createPost, updatePost };
