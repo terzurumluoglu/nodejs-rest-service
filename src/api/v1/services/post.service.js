@@ -3,11 +3,11 @@ const PostSchema = require('../models/post.model');
 const ErrorResponse = require('../utils/errorResponse');
 
 const getAllPosts = () => {
-  return PostSchema.find();
+  return PostSchema.find().populate('tags');
 };
 
 const getPostById = (postId) => {
-  return PostSchema.find({ _id: postId });
+  return PostSchema.find({ _id: postId }).populate('tags');
 };
 
 const createPost = (data) => {
