@@ -15,13 +15,10 @@ const createPost = (data) => {
 };
 
 const updatePost = async (postId, data, next) => {
-  let post = await PostSchema.findById(postId);
-  if (post) {
-    post = await PostSchema.findByIdAndUpdate(postId, data, {
-      new: true,
-      runValidators: true,
-    });
-  }
+  return PostSchema.findByIdAndUpdate(postId, data, {
+    new: true,
+    runValidators: true,
+  });
 };
 
 module.exports = { getAllPosts, getPostById, createPost, updatePost };
