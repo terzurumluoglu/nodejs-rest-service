@@ -1,4 +1,3 @@
-const { version } = require('../constants/version');
 const { postService } = require('../services');
 const ErrorResponse = require('../utils/errorResponse');
 const { asyncHandler } = require('../middlewares/async');
@@ -16,29 +15,28 @@ const getAllPosts = asyncHandler(async (req, res, next) => {
   });
 });
 
-const getPostById = (req, res, next) => {
-  const postId = +req.params.postId;
-  const post = postService.getPostById(postId);
+const getPostById = asyncHandler(async (req, res, next) => {
+  const postId = req.params.postId;
+
+  const post = await postService.getPostById(postId);
 
   if (!post) {
-    return next(
-      new ErrorResponse(version.v1, `Post not found id of ${postId}`, 404)
-    );
+    return next(new ErrorResponse(`Post not found id of ${postId}`, 404));
   }
 
-  res.status(result.statusCode).json({
+  res.status(200).json({
     success: true,
     method: req.method,
     message: 'Get Single Post',
     statusCode: 200,
     result: post,
   });
-};
+});
 
 const createPost = asyncHandler(async (req, res, next) => {
   const post = await postService.createPost(req.body);
 
-  res.status(result.statusCode).json({
+  res.status(200).json({
     success: true,
     method: req.method,
     message: 'Create a new Post',
@@ -49,11 +47,12 @@ const createPost = asyncHandler(async (req, res, next) => {
 
 const updatePost = asyncHandler(async (req, res, next) => {
   const post = await postService.updatePost(req.params.postId, req.body, next);
+
   if (!post) {
-    return next(new ErrorResponse(version.v1, `Not Found`, 404));
+    return next(new ErrorResponse(`Not Found`, 404));
   }
 
-  res.status(result.statusCode).json({
+  res.status(200).json({
     success: true,
     method: req.method,
     message: 'Updated Post',
