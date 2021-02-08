@@ -1,11 +1,10 @@
 const { tagService } = require('../services');
-const { version } = require('../constants/version');
 const { asyncHandler } = require('../middlewares/async');
 
 const getAllTags = asyncHandler(async (req, res, next) => {
   const tags = await tagService.getAllTags();
 
-  res.status(result.statusCode).json({
+  res.status(200).json({
     success: true,
     method: req.method,
     message: 'Get All Tags',
@@ -17,7 +16,7 @@ const getAllTags = asyncHandler(async (req, res, next) => {
 const createTag = asyncHandler(async (req, res, next) => {
   const tag = await tagService.createTag(req.body);
 
-  res.status(result.statusCode).json({
+  res.status(200).json({
     success: true,
     method: req.method,
     message: 'Create a new Tag',
